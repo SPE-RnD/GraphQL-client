@@ -40,12 +40,24 @@ class BookList extends Component{
     }
 
     deleteBooks(idval){
-        this.props.deleteBookMutation({
-            variables:{
-                id : idval,
-            },
-            refetchQueries: [{query:getBooks}]
-        })
+        if(this.props.getBooks.get_data_book.length == 1){
+            this.props.deleteBookMutation({
+                variables:{
+                    id : idval,
+                }
+            });
+            this.props.getBooks.get_data_book = [];
+            this.props.getBooks.error = true;
+            this.forceUpdate();
+        }else{
+            this.props.deleteBookMutation({
+                variables:{
+                    id : idval,
+                },
+                refetchQueries: [{query:getBooks}]
+            })
+        }
+        
     }
 
     render(){
