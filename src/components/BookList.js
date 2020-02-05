@@ -64,9 +64,11 @@ class BookList extends Component{
         return(
             <div style={{left:"0", lineHeight:"40px", backgroundColor:"#e0e0e0"}}>
                 <h1>List Book</h1>
-                <ul id="book-list">
-                    {this.displayBooks()}
-                </ul>
+                <div style={{overflowY:'scroll',height:'250px'}}>
+                    <ul id="book-list">
+                        {this.displayBooks()}
+                    </ul>
+                </div>
                 <EditBook bookID={this.state.selected}/>
             </div>
         )
