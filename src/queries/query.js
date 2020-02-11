@@ -62,5 +62,6 @@ const deleteBookMutation = gql`
     }
 `;
 
+
 export {getAuthor,getBooks,getBookDetail,addBookMutation,editBookMutation,deleteBookMutation}
 
