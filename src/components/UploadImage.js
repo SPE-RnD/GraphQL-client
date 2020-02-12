@@ -1,21 +1,22 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import gql from "graphql-tag";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks"; //untuk mutation
 
-const uploadFileMutation = gql`
-  mutation UploadFile($file: Upload!) {
-    uploadFile(file: $file)
+const uploadGambarMutation = gql`
+  mutation uploadGambar($file: Upload!) {
+    uploadGambar(file: $file)
   }
 `;
 
 export const UploadImage = () => {
-  const [uploadFile] = useMutation(uploadFileMutation);
-  const onDrop = useCallback(
+
+  const [uploadGambar] = useMutation(uploadGambarMutation); //Menjalankan mutation
+  const onDrop = useCallback( //Function yang akan jalan saat terdapat file yang ingin di upload
     ([file]) => {
-      uploadFile({ variables: { file } });
+      uploadGambar({ variables: { file } });
     },
-    [uploadFile]
+    [uploadGambar]
   );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -23,9 +24,9 @@ export const UploadImage = () => {
     <div {...getRootProps()}>
       <input {...getInputProps()} />
       {isDragActive ? (
-        <p>Drop the files here ...</p>
+        <p>Drop file</p>
       ) : (
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        <p>Select File </p>
       )}
     </div>
   );
